@@ -1,0 +1,6 @@
+streamlit~=1.55.0
+jupyter
+pandas
+matplotlib
+seaborn
+numpy
