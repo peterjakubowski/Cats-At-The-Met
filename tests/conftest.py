@@ -1,5 +1,6 @@
 import pytest
 import sqlite3
+from sqlite3 import Cursor
 from src.etl.loader import load_artworks_data
 from src.database.schema import create_database_schema
 
@@ -13,7 +14,7 @@ def db_factory():
 
     create_database_schema(cursor)
 
-    def _populate_db(data):
+    def _populate_db(data: list[dict]) -> Cursor:
         if data:
             load_artworks_data(cursor, data)
 
