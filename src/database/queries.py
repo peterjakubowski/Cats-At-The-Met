@@ -1,15 +1,17 @@
-import sqlite3
+from sqlite3 import Cursor
 
 
-def get_walker_evans_cats(cursor):
+def get_walker_evans_cats(cursor: Cursor) -> list[dict]:
 
     query = """
         WITH filtered_artworks AS (
             SELECT 
                 artworks.id,
+                artworks."Object Number",
                 artworks.Title,
                 artworks.Medium,
-                artworks."Date Created"
+                artworks."Date Created",
+                artworks.Department
             FROM artworks
             JOIN artwork_artists
                 ON artworks.id = artwork_artists.artwork_id
@@ -24,6 +26,7 @@ def get_walker_evans_cats(cursor):
         )
         SELECT
             fa.id,
+            fa."Object Number",
             fa.Title,
             (
                 SELECT GROUP_CONCAT(artists.Name, ', ')
@@ -40,7 +43,15 @@ def get_walker_evans_cats(cursor):
                 JOIN tags
                     ON artwork_tags.tag_id = tags.id
                 WHERE artwork_tags.artwork_id = fa.id
-            ) AS Tags
+            ) AS Tags,
+            fa.Department,
+            (
+                SELECT GROUP_CONCAT(classification.Name, ', ')
+                FROM artwork_classification
+                JOIN classification
+                    ON artwork_classification.classification_id = classification.id
+                WHERE artwork_classification.artwork_id = fa.id
+            ) AS Classification
         FROM filtered_artworks AS fa;
     """
 
