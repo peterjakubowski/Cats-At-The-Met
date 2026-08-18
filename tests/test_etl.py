@@ -9,11 +9,21 @@ class TestLoader:
 
         cursor = db_factory([])
 
-        raw_data = [
-            (1, 'Test Art', 'Artist A | Artist B', 'oil', '2025', 'Test Tag 1')
+        test_data = [
+            {
+                "artwork_id": 1,
+                "object_number": "10.10.10",
+                "title": "Test Art Title",
+                "artists": "Artist A | Artist B",
+                "medium": "oil",
+                "date_created": "2025",
+                "tags": "Test Tag 1",
+                "department": "European Paintings",
+                "classification": "Paintings"
+            }
         ]
 
-        load_artworks_data(cursor, raw_data)
+        load_artworks_data(cursor, test_data)
 
         cursor.execute('SELECT Name FROM artists')
         artists = [row['Name'] for row in cursor.fetchall()]
@@ -25,11 +35,21 @@ class TestLoader:
     def test_load_artworks_data_and_normalizes_tags_correctly(self, db_factory):
         cursor = db_factory([])
 
-        raw_data = [
-            (1, 'Test Art', 'Artist A', 'oil', '2025', 'Test Tag 1|Test Tag 2')
+        test_data = [
+            {
+                "artwork_id": 1,
+                "object_number": "10.10.10",
+                "title": "Test Art",
+                "artists": "Artist A",
+                "medium": "oil",
+                "date_created": "2025",
+                "tags": "Test Tag 1|Test Tag 2",
+                "department": "Photographs",
+                "classification": "Photographs"
+            }
         ]
 
-        load_artworks_data(cursor, raw_data)
+        load_artworks_data(cursor, test_data)
 
         cursor.execute('SELECT Name FROM tags')
         tags = [row['Name'] for row in cursor.fetchall()]
@@ -37,6 +57,32 @@ class TestLoader:
         assert len(tags) == 2
         assert 'Test Tag 1' in tags
         assert 'Test Tag 2' in tags
+
+    def test_load_artworks_data_and_normalizes_classification_correctly(self, db_factory):
+        cursor = db_factory([])
+
+        test_data = [
+            {
+                "artwork_id": 1,
+                "object_number": "10.10.10",
+                "title": "Test Art",
+                "artists": "Artist A",
+                "medium": "oil",
+                "date_created": "2025",
+                "tags": "Test Tag 1",
+                "department": "Photographs",
+                "classification": "Test Classification 1|Test Classification 2"
+            }
+        ]
+
+        load_artworks_data(cursor, test_data)
+
+        cursor.execute('SELECT Name FROM classification')
+        classification = [row['Name'] for row in cursor.fetchall()]
+
+        assert len(classification) == 2
+        assert 'Test Classification 1' in classification
+        assert 'Test Classification 2' in classification
 
     def test_import_artworks_from_csv_parses_and_loads(self, db_factory):
 
