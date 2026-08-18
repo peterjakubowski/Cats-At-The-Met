@@ -1,11 +1,16 @@
-def create_database_schema(cursor):
+from sqlite3 import Cursor
+
+
+def create_database_schema(cursor: Cursor):
 
     cursor.execute('''
         CREATE TABLE artworks (
             id INTEGER PRIMARY KEY,
+            "Object Number" TEXT,
             Title TEXT,
             Medium TEXT,
-            "Date Created" DATE
+            "Date Created" DATE,
+            Department TEXT
         )
     ''')
 
@@ -40,5 +45,22 @@ def create_database_schema(cursor):
             PRIMARY KEY (artwork_id, tag_id),
             FOREIGN KEY (artwork_id) REFERENCES artworks(id)
             FOREIGN KEY (tag_id) REFERENCES tags(id)
+        )
+    ''')
+
+    cursor.execute('''
+        CREATE TABLE classification (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            Name TEXT UNIQUE
+        )
+    ''')
+
+    cursor.execute('''
+        CREATE TABLE artwork_classification (
+            artwork_id INTEGER,
+            classification_id INTEGER,
+            PRIMARY KEY (artwork_id, classification_id),
+            FOREIGN KEY (artwork_id) REFERENCES artworks(id)
+            FOREIGN KEY (classification_id) REFERENCES classification(id)
         )
     ''')
