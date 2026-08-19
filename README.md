@@ -2,7 +2,7 @@
 
 # Cats At The Met
 
-This project explores cats in artwork at The Met by analyzing the Metropolitan Museum of Art's Open Access dataset. It consists of two main components: an Exploratory Data Analysis (EDA) of "cat" artworks in the collection, and a Test-Driven Development (TDD) framework for querying a local SQLite database of this artwork data.
+This project explores cats in artworks at The Met by analyzing the Metropolitan Museum of Art's [Open Access](https://github.com/metmuseum/openaccess) dataset. It consists of two main components: an Exploratory Data Analysis (EDA) of "cat" artworks in the collection, and a Test-Driven Development (TDD) framework for querying a local SQLite database of this artwork data.
 
 ## Project Overview
 
@@ -14,7 +14,7 @@ The repository is structured to separate the analytical exploration from the dat
 
 ## Data Source: The Met Open Access CSV
 
-The data powering this project comes directly from the Metropolitan Museum of Art's Open Access initiative.The Jupyter notebook is configured to automatically download the latest MetObjects.csv file directly from the official Met GitHub repository upon execution. This ensures you are working with the most up-to-date publicly available collection data.
+The data powering this project comes directly from the Metropolitan Museum of Art's [Open Access](https://github.com/metmuseum/openaccess) initiative.The Jupyter notebook is configured to automatically download the latest `MetObjects.csv` file directly from the official Met GitHub repository upon execution. This ensures you are working with the most up-to-date publicly available collection data.
 
 ## Getting Started
 
@@ -47,7 +47,7 @@ The EDA is contained within a Jupyter Notebook.
 
 2. Open `notebooks/cats_at_the_met_eda.ipynb` in your browser.
 
-3. Run the cells sequentially. The initial cells will handle downloading the large MetObjects.csv dataset. Note: The download and initial processing may take a few minutes depending on your internet connection.
+3. Run the cells sequentially. The initial cells will handle downloading the large `MetObjects.csv` dataset. Note: The download and initial processing may take a few minutes depending on your internet connection.
 
 ## 2. Running the TDD SQLite Framework
 
@@ -75,14 +75,14 @@ This will run tests ensuring the schema is built correctly, data is loaded as ex
 
 Once the tests pass, you can execute the main script. This script will:
 
-1. Initialize a local SQLite database (met_art.db).
+1. Initialize a local SQLite database (`met_artworks.db`).
 2. Load a subset of the dataset into the database.
 3. Execute the target query to find artworks by Walker Evans that feature cats.
 
 Run the main script from the project root:
 
 ```commandline
-python src/main.py
+python -m src.main
 ```
 
 The results of the query will be printed to the console.
