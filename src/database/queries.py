@@ -58,3 +58,59 @@ def get_walker_evans_cats(cursor: Cursor) -> list[dict]:
     cursor.execute(query)
 
     return [dict(row) for row in cursor.fetchall()]
+
+
+def count_number_of_cat_artworks_by_artist_name(cursor: Cursor) -> list[dict]:
+
+    query = """
+        SELECT
+            artists.Name AS Artist,
+            COUNT(tags.Name) AS counts
+        FROM
+            artworks
+        RIGHT JOIN artwork_artists
+            ON artworks.id = artwork_artists.artwork_id
+        JOIN artists
+            ON artists.id = artwork_artists.artist_id
+        JOIN artwork_tags
+            ON artworks.id = artwork_tags.artwork_id
+        JOIN tags
+            ON tags.id = artwork_tags.tag_id
+        WHERE
+            tags.Name = 'Cats'
+        GROUP BY artists.Name
+        ORDER BY counts DESC, Artist ASC
+        LIMIT 10;
+    """
+
+    cursor.execute(query)
+
+    return [dict(row) for row in cursor.fetchall()]
+
+
+def count_number_of_cat_artworks_by_classification(cursor: Cursor) -> list[dict]:
+
+    query = """
+        SELECT
+            classification.Name AS Classification,
+            COUNT(tags.Name) AS counts
+        FROM artworks
+        JOIN artwork_classification
+            ON artworks.id = artwork_classification.artwork_id
+        JOIN classification
+            ON artwork_classification.classification_id = classification.id
+        JOIN artwork_tags
+            ON artworks.id = artwork_tags.artwork_id
+        JOIN tags
+            ON artwork_tags.tag_id = tags.id
+        WHERE 
+            tags.Name = 'Cats'
+        GROUP BY
+            Classification
+        ORDER BY counts DESC, Classification ASC
+        LIMIT 10;
+    """
+
+    cursor.execute(query)
+
+    return [dict(row) for row in cursor.fetchall()]
