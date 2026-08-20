@@ -20,7 +20,7 @@ The data powering this project comes directly from the Metropolitan Museum of Ar
 
 ### Prerequisites
 
-Ensure you have Python 3.8+ installed. It is highly recommended to use a virtual environment.
+Ensure you have Python 3.10+ installed. It is highly recommended to use a virtual environment.
 
 1. Clone the repository:
 
