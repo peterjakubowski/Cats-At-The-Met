@@ -25,19 +25,20 @@ def load_artworks_data(cursor: Cursor, raw_data: list[dict]):
         artist_names = [name.strip() for name in artist_string.split('|')]
 
         for artist_name in artist_names:
-            cursor.execute('''
-                INSERT OR IGNORE INTO artists (Name) VALUES (?)
-            ''', (artist_name,))
+            if artist_name:
+                cursor.execute('''
+                    INSERT OR IGNORE INTO artists (Name) VALUES (?)
+                ''', (artist_name,))
 
-            cursor.execute('''
-                SELECT id FROM artists WHERE Name = ?
-            ''', (artist_name,))
-            artist_id = cursor.fetchone()['id']
+                cursor.execute('''
+                    SELECT id FROM artists WHERE Name = ?
+                ''', (artist_name,))
+                artist_id = cursor.fetchone()['id']
 
-            cursor.execute('''
-                INSERT OR IGNORE INTO artwork_artists (artwork_id, artist_id)
-                VALUES (?, ?)
-            ''', (artwork_id, artist_id))
+                cursor.execute('''
+                    INSERT OR IGNORE INTO artwork_artists (artwork_id, artist_id)
+                    VALUES (?, ?)
+                ''', (artwork_id, artist_id))
 
         tag_names = [name.strip() for name in tag_string.split('|')]
 
@@ -59,19 +60,20 @@ def load_artworks_data(cursor: Cursor, raw_data: list[dict]):
         classification_names = [name.strip() for name in classification_string.split('|')]
 
         for class_name in classification_names:
-            cursor.execute('''
-                INSERT OR IGNORE INTO classification (Name) Values (?)
-            ''', (class_name,))
+            if class_name:
+                cursor.execute('''
+                    INSERT OR IGNORE INTO classification (Name) Values (?)
+                ''', (class_name,))
 
-            cursor.execute('''
-                SELECT id FROM classification WHERE Name = ?
-            ''', (class_name,))
-            class_id = cursor.fetchone()['id']
+                cursor.execute('''
+                    SELECT id FROM classification WHERE Name = ?
+                ''', (class_name,))
+                class_id = cursor.fetchone()['id']
 
-            cursor.execute('''
-                INSERT OR IGNORE INTO artwork_classification (artwork_id, classification_id)
-                VALUES (?, ?)
-            ''', (artwork_id, class_id))
+                cursor.execute('''
+                    INSERT OR IGNORE INTO artwork_classification (artwork_id, classification_id)
+                    VALUES (?, ?)
+                ''', (artwork_id, class_id))
 
 
 def import_artworks_from_csv(cursor: Cursor, file_path: Path):
