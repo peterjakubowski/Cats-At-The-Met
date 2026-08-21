@@ -1,3 +1,12 @@
+"""Cats at The Met database loader
+
+Imports artworks from a csv file and loads records
+row by row into a sqlite database.
+
+"""
+
+__author__ = "Peter Jakubowski"
+
 import csv
 from sqlite3 import Cursor
 from pathlib import Path

@@ -1,3 +1,12 @@
+"""Cats At The Met
+
+Runs predefined SQL queries for cat-related artworks in The Met's collection.
+The data comes from The Met's Open Access dataset and is loaded into a sqlite db.
+
+"""
+
+__author__ = "Peter Jakubowski"
+
 from src.database.connection import (fetch_walker_evans_cats_from_db,
                                      fetch_number_of_cat_artworks_by_artist_name_from_db,
                                      fetch_number_of_cat_artworks_by_classification_from_db)

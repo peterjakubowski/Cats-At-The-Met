@@ -1,3 +1,9 @@
+"""Cats at The Met sqlite database connection and wrappers
+
+"""
+
+__author__ = "Peter Jakubowski"
+
 import sqlite3
 from sqlite3 import Connection, Cursor
 from src.database.schema import create_database_schema

@@ -1,3 +1,9 @@
+"""Cats at The Met SQL query unit tests
+
+"""
+
+__author__ = "Peter Jakubowski"
+
 from src.database.queries import (get_walker_evans_cats,
                                   count_number_of_cat_artworks_by_artist_name,
                                   count_number_of_cat_artworks_by_classification)

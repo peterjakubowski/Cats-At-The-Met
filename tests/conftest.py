@@ -1,3 +1,11 @@
+"""Cats at The Met unit testing database
+
+Builds an in-memory sqlite database for unit testing.
+
+"""
+
+__author__ = "Peter Jakubowski"
+
 import pytest
 import sqlite3
 from sqlite3 import Cursor

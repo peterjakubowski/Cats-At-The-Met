@@ -1,3 +1,9 @@
+"""Cats at The Met SQL queries
+
+"""
+
+__author__ = "Peter Jakubowski"
+
 from sqlite3 import Cursor
 
 

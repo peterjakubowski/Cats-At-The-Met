@@ -1,3 +1,11 @@
+"""Cats at The Met database schema
+
+Builds the sqlite database schema and creates tables.
+
+"""
+
+__author__ = "Peter Jakubowski"
+
 from sqlite3 import Cursor
 
 

@@ -1,3 +1,9 @@
+"""Cats at The Met etl unit tests
+
+"""
+
+__author__ = "Peter Jakubowski"
+
 from unittest.mock import patch, mock_open
 from src.etl.loader import load_artworks_data, import_artworks_from_csv
 from .conftest import db_factory
