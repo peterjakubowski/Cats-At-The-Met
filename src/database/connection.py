@@ -5,13 +5,16 @@
 __author__ = "Peter Jakubowski"
 
 import sqlite3
+from pathlib import Path
 from sqlite3 import Connection, Cursor
+
+from src.database.queries import (
+    count_number_of_cat_artworks_by_artist_name,
+    count_number_of_cat_artworks_by_classification,
+    get_walker_evans_cats,
+)
 from src.database.schema import create_database_schema
 from src.etl.loader import import_artworks_from_csv
-from src.database.queries import (get_walker_evans_cats,
-                                  count_number_of_cat_artworks_by_artist_name,
-                                  count_number_of_cat_artworks_by_classification)
-from pathlib import Path
 
 CURRENT_FILE = Path(__file__).resolve()
 
