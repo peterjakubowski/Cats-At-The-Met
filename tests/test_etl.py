@@ -4,9 +4,9 @@
 
 __author__ = "Peter Jakubowski"
 
-from unittest.mock import patch, mock_open
-from src.etl.loader import load_artworks_data, import_artworks_from_csv
-from .conftest import db_factory
+from unittest.mock import mock_open, patch
+
+from src.etl.loader import import_artworks_from_csv, load_artworks_data
 
 
 class TestLoader:
