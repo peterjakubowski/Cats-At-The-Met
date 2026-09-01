@@ -4,10 +4,11 @@
 
 __author__ = "Peter Jakubowski"
 
-from src.database.queries import (get_walker_evans_cats,
-                                  count_number_of_cat_artworks_by_artist_name,
-                                  count_number_of_cat_artworks_by_classification)
-from .conftest import db_factory
+from src.database.queries import (
+    count_number_of_cat_artworks_by_artist_name,
+    count_number_of_cat_artworks_by_classification,
+    get_walker_evans_cats,
+)
 
 
 class TestWalkerEvansCatsQueries:
