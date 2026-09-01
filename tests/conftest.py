@@ -6,11 +6,13 @@ Builds an in-memory sqlite database for unit testing.
 
 __author__ = "Peter Jakubowski"
 
-import pytest
 import sqlite3
 from sqlite3 import Cursor
-from src.etl.loader import load_artworks_data
+
+import pytest
+
 from src.database.schema import create_database_schema
+from src.etl.loader import load_artworks_data
 
 
 @pytest.fixture
